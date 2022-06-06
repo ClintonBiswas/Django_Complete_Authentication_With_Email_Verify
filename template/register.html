@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <div class="card mt-3">
+              <div class="card-body">
+                  <h5 class="card-title text-center">Register Here</h5>
+                  <p class="card-text"> Register to see view photos</p>
+                  
+                  {% if messages %}
+                      {% for message in messages %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                      {% endfor %}
+                  {% endif %}
+                      
+                  <form action="{% url 'register' %}" method="POST">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <input class="form-control" type="email" name="email" value="" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="text" name="fullname" value="" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="username" value="" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" value="" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password2" value="" placeholder="Confirm Password">
+                    </div>
+                      <button class="btn btn-block btn-primary" type="submit">Register</button>
+                  </form>
+              </div>
+          </div>
+          <div class="card mt-3">
+              <p class="text-center mt-3 mb-3">Already Have An Account? &nbsp;<a href="{% url 'login' %}">Login Here</a></p>
+          </div>
+      </div>
+      <div class="col-md-2"></div>
+  </div>
+{% endblock content %}
